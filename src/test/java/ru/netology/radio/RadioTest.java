@@ -7,7 +7,6 @@ public class RadioTest {
 
     @Test
     public void shouldSmallerMinVolume() {
-
         Radio volume = new Radio();
         volume.setCurrentVolume(-50);
         int expected = 0;
@@ -69,7 +68,6 @@ public class RadioTest {
 
     @Test
     public void shouldNewRadioStation() {
-
         Radio station = new Radio();
         station.setCurrentRadioStation(9);
         int expected = 9;
@@ -78,7 +76,6 @@ public class RadioTest {
     }
     @Test
     public void shouldRadioStationMoreMax() {
-
         Radio station = new Radio();
         station.setCurrentRadioStation(10);
         int expected = 0;
@@ -87,7 +84,6 @@ public class RadioTest {
     }
     @Test
     public void shouldRadioStationSmallerMin() {
-
         Radio station = new Radio();
         station.setCurrentRadioStation(-1);
         int expected = 0;
@@ -96,7 +92,6 @@ public class RadioTest {
     }
     @Test
     public void shouldMaxRadioStation() {
-
         Radio station = new Radio();
         station.setCurrentRadioStation(9);
         station.next();
@@ -107,7 +102,6 @@ public class RadioTest {
 
     @Test
     public void shouldRadioStationMoreMax2() {
-
         Radio station = new Radio();
         station.setCurrentRadioStation(10);
         station.next();
@@ -117,7 +111,6 @@ public class RadioTest {
     }
     @Test
     public void shouldMinRadioStation() {
-
         Radio station = new Radio();
         station.setCurrentRadioStation(0);
         station.prev();
@@ -127,9 +120,27 @@ public class RadioTest {
     }
     @Test
     public void shouldRadioStationSmallerMin2() {
-
         Radio station = new Radio();
         station.setCurrentRadioStation(5);
+        station.prev();
+        int expected = 4;
+        int actual = station.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldRadioStationOver10() {
+        Radio station = new Radio(30);
+        station.setCurrentRadioStation(29);
+        station.next();
+        int expected = 0;
+        int actual = station.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldRadioStation5() {
+        Radio station = new Radio(5);
+        station.setCurrentRadioStation(0);
         station.prev();
         int expected = 4;
         int actual = station.getCurrentRadioStation();
